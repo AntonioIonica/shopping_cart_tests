@@ -33,28 +33,30 @@ export default function ProductCard({ product }) {
       />
       <h3 className="font-semibold">{product.title}</h3>
       <p className="font-bold text-green-600">${product.price}</p>
-      <div className="mt-2 flex w-[100%] items-center">
-        <input
-          type="number"
-          value={quantity}
-          className="mr-2 w-16 rounded border px-2"
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-        {isInCart && cartItem.quantity > 0 ? (
-          <button
-            onClick={handleUpdateCart}
-            className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
-          >
-            Update quantity
-          </button>
-        ) : (
-          <button
-            onClick={handleAddToCart}
-            className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
-          >
-            Add to Cart
-          </button>
-        )}
+      <div className="mt-2 flex w-[100%] items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <input
+            type="number"
+            value={quantity}
+            className="mr-2 w-16 rounded border px-2"
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+          {isInCart && cartItem.quantity > 0 ? (
+            <button
+              onClick={handleUpdateCart}
+              className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
+            >
+              Update quantity
+            </button>
+          ) : (
+            <button
+              onClick={handleAddToCart}
+              className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
+            >
+              Add to Cart
+            </button>
+          )}
+        </div>
         <button
           onClick={handleRemoveFromCart}
           className="rounded bg-red-600 px-4 py-1 text-white hover:bg-red-800"

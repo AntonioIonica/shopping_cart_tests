@@ -30,7 +30,6 @@ export default function ShopPage() {
 
   return (
     <div className="align-center flex justify-center p-4">
-      <h1 className="mb-4 text-2xl font-bold text-amber-500">Shop</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

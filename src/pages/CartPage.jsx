@@ -24,11 +24,20 @@ export default function CartPage() {
         <div>
           {cart.map((item) => (
             <div key={item.id} className="flex justify-between border-b py-4">
-              <div>
-                <h3 className="font-bold">{item.title}</h3>
-                <p>
-                  ${item.price} x {item.quantity}
-                </p>
+              <div className="flex items-center space-x-9">
+                <div className="h-13 w-13 rounded-sm border shadow-xl">
+                  <img
+                    className="mb-1 h-12 w-12 object-contain"
+                    alt={item.title}
+                    src={item.image}
+                  />
+                </div>
+                <div>
+                  <h3 className="font-bold">{item.title}</h3>
+                  <p>
+                    ${item.price} x {item.quantity}
+                  </p>
+                </div>
               </div>
               <div className="flex items-center">
                 <input
@@ -49,13 +58,15 @@ export default function CartPage() {
               </div>
             </div>
           ))}
-          <button
-            className="mt-4 rounded bg-red-500 px-4 py-3 text-amber-50 hover:bg-red-700"
-            onClick={clearCart}
-          >
-            Clear cart
-          </button>
-          <CheckoutButton />
+          <div className="flex w-full items-center justify-between">
+            <button
+              className="mt-4 rounded bg-red-500 px-4 py-3 text-amber-50 hover:bg-red-700"
+              onClick={clearCart}
+            >
+              Clear cart
+            </button>
+            <CheckoutButton />
+          </div>
         </div>
       )}
     </div>
