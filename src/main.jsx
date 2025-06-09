@@ -13,6 +13,7 @@ import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
 import MainLayout from "./pages/MainLayout";
 import { CartProvider } from "./context/CartContext";
+import CartPage from "./pages/CartPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/shop" element={<ShopPage />} />
+      <Route path="/cart" element={<CartPage />} />
     </Route>,
   ),
 );

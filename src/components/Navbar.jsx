@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 
 export default function Navbar() {
-  const { cart } = useCartContext();
+  const { totalItems } = useCartContext();
 
   return (
     <nav className="bg-slate-400 p-5 text-amber-50">
@@ -19,7 +19,9 @@ export default function Navbar() {
             Shop
           </Link>
         </div>
-        <div className="flex items-center">Cart: {cart.length}</div>
+        <Link to="/cart" className="flex items-center">
+          Cart: {totalItems}
+        </Link>
       </div>
     </nav>
   );

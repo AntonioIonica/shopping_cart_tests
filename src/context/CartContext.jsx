@@ -4,6 +4,7 @@ const Context = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [isCheckoutComplete, setIsCheckoutComplete] = useState(false);
 
   const addToCart = (product, quantity = 1) => {
     setCart((prevCart) => {
@@ -43,7 +44,24 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
-  const value = { cart, addToCart, clearCart, updateQuantity, removeFromCart };
+  const checkout = () => {
+    setIsCheckoutComplete(true);
+    clearCart();
+    setTimeout(() => setIsCheckoutComplete(false), 3000);
+  };
+
+  const totalItems = cart.reduce((sum, item) => sum + Number(item.quantity), 0);
+
+  const value = {
+    cart,
+    addToCart,
+    clearCart,
+    updateQuantity,
+    removeFromCart,
+    totalItems,
+    checkout,
+    isCheckoutComplete,
+  };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

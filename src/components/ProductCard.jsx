@@ -10,6 +10,7 @@ export default function ProductCard({ product }) {
   const isInCart = cartItem !== undefined;
 
   const handleAddToCart = () => {
+    if (quantity === 0) return;
     addToCart(product, quantity);
     setQuantity(1);
   };
@@ -39,7 +40,7 @@ export default function ProductCard({ product }) {
           className="mr-2 w-16 rounded border px-2"
           onChange={(e) => setQuantity(e.target.value)}
         />
-        {isInCart ? (
+        {isInCart && cartItem.quantity > 0 ? (
           <button
             onClick={handleUpdateCart}
             className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
