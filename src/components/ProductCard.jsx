@@ -4,10 +4,23 @@ import { useCartContext } from "../context/CartContext";
 
 export default function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(1);
-  const { setCart } = useCartContext();
+  const { addToCart, removeFromCart, updateQuantity, cart } = useCartContext();
 
-  const handleAddToCart = (product) => {
-    setCart((prev) => [...prev, product]);
+  const cartItem = cart.find((item) => item.id === product.id);
+  const isInCart = cartItem !== undefined;
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    setQuantity(1);
+  };
+
+  const handleRemoveFromCart = () => {
+    removeFromCart(product.id);
+    setQuantity(1);
+  };
+
+  const handleUpdateCart = () => {
+    updateQuantity(product.id, quantity);
   };
 
   return (
@@ -23,15 +36,29 @@ export default function ProductCard({ product }) {
         <input
           type="number"
           value={quantity}
-          min="1"
           className="mr-2 w-16 rounded border px-2"
           onChange={(e) => setQuantity(e.target.value)}
         />
+        {isInCart ? (
+          <button
+            onClick={handleUpdateCart}
+            className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
+          >
+            Update quantity
+          </button>
+        ) : (
+          <button
+            onClick={handleAddToCart}
+            className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
+          >
+            Add to Cart
+          </button>
+        )}
         <button
-          onClick={() => handleAddToCart(product)}
-          className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
+          onClick={handleRemoveFromCart}
+          className="rounded bg-red-600 px-4 py-1 text-white hover:bg-red-800"
         >
-          Add to Cart
+          X
         </button>
       </div>
     </div>

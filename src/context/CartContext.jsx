@@ -7,9 +7,8 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product, quantity = 1) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-
       // already existing the product
+      const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
         return prevCart.map((item) =>
           item.id === product.id
@@ -44,7 +43,7 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
-  const value = { cart, setCart, clearCart, updateQuantity };
+  const value = { cart, addToCart, clearCart, updateQuantity, removeFromCart };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
