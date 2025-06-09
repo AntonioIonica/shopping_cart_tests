@@ -11,14 +11,16 @@ import {
 import ErrorPage from "./ErrorPage";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
+import MainLayout from "./pages/MainLayout";
 import { CartProvider } from "./context/CartContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route path="/" element={<HomePage />} errorElement={<ErrorPage />} />
-      <Route path="/shop" element={<ShopPage />} errorElement={<ErrorPage />} />
-    </>,
+    <Route element={<MainLayout />} errorElement={<ErrorPage />}>
+      <Route index element={<HomePage />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/shop" element={<ShopPage />} />
+    </Route>,
   ),
 );
 
