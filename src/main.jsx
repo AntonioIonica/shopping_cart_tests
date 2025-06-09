@@ -11,6 +11,7 @@ import {
 import ErrorPage from "./ErrorPage";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
+import { CartProvider } from "./context/CartContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
   </StrictMode>,
 );

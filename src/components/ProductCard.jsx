@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useCartContext } from "../context/CartContext";
 
 export default function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(1);
+  const { setCart } = useCartContext();
 
-  const handleAddToCart = () => {
-    console.log(`Addded ${quantity} of ${product.title} to cart!`);
+  const handleAddToCart = (product) => {
+    setCart(product);
   };
 
   return (
@@ -26,7 +28,7 @@ export default function ProductCard({ product }) {
           onChange={(e) => setQuantity(e.target.value)}
         />
         <button
-          onClick={handleAddToCart}
+          onClick={() => handleAddToCart(product)}
           className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800"
         >
           Add to Cart
