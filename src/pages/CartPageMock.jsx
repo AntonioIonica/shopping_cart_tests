@@ -1,7 +1,7 @@
-import { useCartContext } from "../context/CartContext";
 import CheckoutButton from "../components/CheckoutButton";
+import { useCartContextMock } from "../context/CartContextMock";
 
-export default function CartPage() {
+export default function CartPageMock() {
   const {
     cart,
     removeFromCart,
@@ -9,7 +9,7 @@ export default function CartPage() {
     updateQuantity,
     totalItems,
     isCheckoutComplete,
-  } = useCartContext();
+  } = useCartContextMock();
 
   return (
     <div className="p-5">
@@ -65,15 +65,7 @@ export default function CartPage() {
             >
               Clear cart
             </button>
-            <div>
-              <span className="font-bold text-green-500">
-                $
-                {cart
-                  .reduce((sum, item) => sum + item.price * item.quantity, 0)
-                  .toFixed(2)}
-              </span>
-              <CheckoutButton />
-            </div>
+            <CheckoutButton />
           </div>
         </div>
       )}
