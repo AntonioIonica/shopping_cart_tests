@@ -7,15 +7,17 @@ export default function ProductCard({ product }) {
   const { addToCart, removeFromCart, updateQuantity, cart } = useCartContext();
 
   const cartItem = cart.find((item) => item.id === product.id);
-  const isInCart = cartItem !== undefined;
+  const isInCart = cartItem !== undefined; // checks if there a product in cart
 
   const handleAddToCart = () => {
     if (quantity === 0) return;
+
     addToCart(product, quantity);
-    setQuantity(1);
+    setQuantity(1); // default quantity
   };
 
   const handleRemoveFromCart = () => {
+    if (!product) return;
     removeFromCart(product.id);
     setQuantity(1);
   };

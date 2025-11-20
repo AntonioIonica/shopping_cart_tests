@@ -1,8 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ProductCard from "../components/ProductCard";
-import { CartProvider } from "../context/CartContext";
-import { describe, expect, test } from "vitest";
+import { CartProviderMock } from "../context/CartContextMock";
+import { describe, expect, test, vi } from "vitest";
 
+// test product
 const mockProduct = {
   id: 1,
   title: "Test Product",
@@ -13,9 +14,9 @@ const mockProduct = {
 describe("Product Card", () => {
   test("renders product details", () => {
     render(
-      <CartProvider>
+      <CartProviderMock>
         <ProductCard product={mockProduct} />
-      </CartProvider>,
+      </CartProviderMock>,
     );
 
     expect(screen.getByText(mockProduct.title)).toBeInTheDocument();
@@ -25,9 +26,9 @@ describe("Product Card", () => {
 
   test("updates quantity input", () => {
     render(
-      <CartProvider>
+      <CartProviderMock>
         <ProductCard product={mockProduct} />
-      </CartProvider>,
+      </CartProviderMock>,
     );
 
     const input = screen.getByRole("spinbutton");
@@ -36,12 +37,14 @@ describe("Product Card", () => {
   });
 
   test('calls addToCart when "add to cart" is clicked', () => {
-    const { getByText } = render(
-      <CartProvider>
+    const addToCart = vi.fn();
+    render(
+      <CartProviderMock mockAddToCart={addToCart}>
         <ProductCard product={mockProduct} />
-      </CartProvider>,
+      </CartProviderMock>,
     );
 
-    fireEvent.click(getByText("Add to Cart"));
+    fireEvent.click(screen.getByText("Add to Cart"));
+    expect(addToCart).toHaveBeenCalledWith(mockProduct, 1);
   });
 });

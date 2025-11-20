@@ -1,8 +1,12 @@
-import { createContext, useContext, useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "./CartContext";
 
-const Context = createContext();
-
-export const CartProviderMock = ({ children, initialCart = [] }) => {
+export const CartProviderMock = ({
+  children,
+  mockCheckout,
+  mockAddToCart,
+  initialCart = [],
+}) => {
   const [cart, setCart] = useState(initialCart);
   const [isCheckoutComplete, setIsCheckoutComplete] = useState(false);
 
@@ -54,16 +58,16 @@ export const CartProviderMock = ({ children, initialCart = [] }) => {
 
   const value = {
     cart,
-    addToCart,
+    addToCart: mockAddToCart ?? addToCart,
     clearCart,
     updateQuantity,
     removeFromCart,
     totalItems,
-    checkout,
+    checkout: mockCheckout ?? checkout,
     isCheckoutComplete,
   };
 
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
-export const useCartContextMock = () => useContext(Context);
+export const useCartContextMock = () => useContext(CartContext);

@@ -2,23 +2,25 @@ import { createContext, useContext, useState } from "react";
 
 const Context = createContext();
 
+export const CartContext = Context;
+
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [isCheckoutComplete, setIsCheckoutComplete] = useState(false);
 
   const addToCart = (product, quantity = 1) => {
     setCart((prevCart) => {
-      // already existing the product
+      // already having the product
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
         return prevCart.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
+            ? { ...item, quantity: item.quantity + quantity } // changing the quantity of the product
             : item,
         );
       }
 
-      // add new one
+      // saving the new product in the cart
       return [...prevCart, { ...product, quantity }];
     });
   };

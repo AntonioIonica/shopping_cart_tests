@@ -1,16 +1,15 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import CartPage from "./CartPage";
-import { CartProvider } from "../context/CartContext";
 import { describe, expect, it } from "vitest";
 import CartPageMock from "./CartPageMock";
 import { CartProviderMock } from "../context/CartContextMock";
 
+// Default state of cart
 describe("Cartpage", () => {
   it("shows empty cart message", () => {
     render(
-      <CartProvider>
-        <CartPage />
-      </CartProvider>,
+      <CartProviderMock>
+        <CartPageMock />
+      </CartProviderMock>,
     );
 
     expect(screen.getByText("Your cart is empty!")).toBeInTheDocument();

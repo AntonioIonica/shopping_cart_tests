@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import CheckoutButton from "./CheckoutButton";
-import { CartProvider } from "../context/CartContext";
 import { describe, expect, it, vi } from "vitest";
 import { CartProviderMock } from "../context/CartContextMock";
 
@@ -15,7 +14,7 @@ describe("CheckoutButton", () => {
     expect(screen.getByText("Proceed to checkout")).toBeDisabled();
   });
 
-  it("calls checkout when", () => {
+  it("calls checkout when user clicks on checkout", () => {
     const mockCart = [{ id: 1, title: "Test Product", price: 10, quantity: 1 }];
     const mockCheckout = vi.fn();
 

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 
 export default function Navbar() {
-  const { totalItems } = useCartContext();
+  const { totalItems } = useCartContext(); // total number of cart items
 
   return (
     <nav className="bg-slate-400 p-5 text-amber-50">
