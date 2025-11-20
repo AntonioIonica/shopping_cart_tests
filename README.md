@@ -252,3 +252,5 @@ Project Link: [Github](https://github.com/AntonioIonica/shopping_cart_tests)
 [tailwindcss-url]: https://www.tailwindcss.com/
 [vite.dev]: https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff
 [Vite-url]: https://vite.dev
+[vitest.dev]: [https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff](https://img.shields.io/badge/Vitest-6E9F18?logo=vitest&logoColor=fff)
+[vitest-url]: https://vitest.dev
